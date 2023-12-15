@@ -62,28 +62,31 @@ class Inputter{
 
 class DFSFriendLineTracer{
 
-    private static final List<StackData> stack = new ArrayList<>();
+    private static StackData[] stack = null;
 
     public static boolean findFriendLine(Person[] people, int startPerson, int friendDistance) {
 
-        // Init
+        if (stack == null)
+            stack = new StackData[people.length];
         int top = -1;
+
+        // Init
         people[startPerson].visited = true;
         int friendDis = 1;
-        if (++top < stack.size()) {
-            stack.get(top).currentPerson = people[startPerson];
-            stack.get(top).friendIdx = people[startPerson].friends.length;
+        if (stack[++top] != null) {
+            stack[top].currentPerson = people[startPerson];
+            stack[top].friendIdx = people[startPerson].friends.length;
         }
         else
-            stack.add(new StackData(people[startPerson], people[startPerson].friends.length));
+            stack[top] = new StackData(people[startPerson], people[startPerson].friends.length);
 
         // DFS
         while (top != -1) {
 
-            Person currentPerson = stack.get(top).currentPerson;
+            Person currentPerson = stack[top].currentPerson;
 
             // get previous friend
-            int prevFriendIdx = stack.get(top).friendIdx - 1;
+            int prevFriendIdx = stack[top].friendIdx - 1;
             for (; prevFriendIdx >= 0; prevFriendIdx--)
                 if (!currentPerson.friends[prevFriendIdx].visited)
                     break;
@@ -100,14 +103,14 @@ class DFSFriendLineTracer{
                 if (friendDis == friendDistance)
                     return true;
 
-                stack.get(top).friendIdx = prevFriendIdx;
+                stack[top].friendIdx = prevFriendIdx;
 
-                if (++top < stack.size()) {
-                    stack.get(top).currentPerson = currentPerson.friends[prevFriendIdx];
-                    stack.get(top).friendIdx = currentPerson.friends[prevFriendIdx].friends.length;
+                if (stack[++top] != null) {
+                    stack[top].currentPerson = currentPerson.friends[prevFriendIdx];
+                    stack[top].friendIdx = currentPerson.friends[prevFriendIdx].friends.length;
                 }
                 else
-                    stack.add(new StackData(currentPerson.friends[prevFriendIdx], currentPerson.friends[prevFriendIdx].friends.length));
+                    stack[top] = new StackData(currentPerson.friends[prevFriendIdx], currentPerson.friends[prevFriendIdx].friends.length);
             }
         }
 
