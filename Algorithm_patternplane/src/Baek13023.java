@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Person {
-    private final List<Person> primitiveFriends = new ArrayList<Person>();
+    private final List<Person> primitiveFriends = new ArrayList<>();
     public Person[] friends;
     public boolean visited = false;
 
@@ -23,37 +23,6 @@ class StackData{
     public StackData(Person currentPerson, int friendIdx) {
         this.currentPerson = currentPerson;
         this.friendIdx = friendIdx;
-    }
-}
-
-class Stack {
-    private final List<StackData> stack = new ArrayList<>();
-    private int top = -1;
-
-    public void clear() {
-        top = -1;
-    }
-
-    public boolean isEmpty() {
-        return (top == -1);
-    }
-
-    public void push(Person currentPerson, int friendIdx) {
-        top++;
-        if (top >= stack.size())
-            stack.add(new StackData(currentPerson, friendIdx));
-        else {
-            stack.get(top).currentPerson = currentPerson;
-            stack.get(top).friendIdx = friendIdx;
-        }
-    }
-
-    public StackData pop() {
-        return stack.get(top--);
-    }
-
-    public StackData peak() {
-        return stack.get(top);
     }
 }
 
@@ -93,24 +62,29 @@ class Inputter{
 
 class DFSFriendLineTracer{
 
-    private static final Stack stack = new Stack();
+    private static final List<StackData> stack = new ArrayList<>();
 
     public static boolean findFriendLine(Person[] people, int startPerson, int friendDistance) {
 
         // Init
-        stack.clear();
+        int top = -1;
         people[startPerson].visited = true;
         int friendDis = 1;
-        stack.push(people[startPerson], -1);
+        if (++top < stack.size()) {
+            stack.get(top).currentPerson = people[startPerson];
+            stack.get(top).friendIdx = -1;
+        }
+        else
+            stack.add(new StackData(people[startPerson], -1));
 
         // DFS
-        while (!stack.isEmpty()) {
+        while (top != -1) {
 
-            Person currentPerson = stack.peak().currentPerson;
+            Person currentPerson = stack.get(top).currentPerson;
 
             // get next friend
             int nextFriendIdx = -1;
-            for (int i = stack.peak().friendIdx + 1; i < currentPerson.friends.length; i++)
+            for (int i = stack.get(top).friendIdx + 1; i < currentPerson.friends.length; i++)
                 if (!currentPerson.friends[i].visited) {
                     nextFriendIdx = i;
                     break;
@@ -120,7 +94,7 @@ class DFSFriendLineTracer{
             if (nextFriendIdx == -1) {
                 currentPerson.visited = false;
                 friendDis--;
-                stack.pop();
+                top--;
             }
             else {
                 currentPerson.friends[nextFriendIdx].visited = true;
@@ -128,8 +102,14 @@ class DFSFriendLineTracer{
                 if (friendDis == friendDistance)
                     return true;
 
-                stack.peak().friendIdx = nextFriendIdx;
-                stack.push(currentPerson.friends[nextFriendIdx], -1);
+                stack.get(top).friendIdx = nextFriendIdx;
+
+                if (++top < stack.size()) {
+                    stack.get(top).currentPerson = currentPerson.friends[nextFriendIdx];
+                    stack.get(top).friendIdx = -1;
+                }
+                else
+                    stack.add(new StackData(currentPerson.friends[nextFriendIdx], -1));
             }
         }
 
