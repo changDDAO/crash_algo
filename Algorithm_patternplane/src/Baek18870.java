@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class Baek18870 {
@@ -43,7 +42,7 @@ public class Baek18870 {
          */
 
         // cheap sort
-        PriorityQueue<Point> minHeap = new PriorityQueue<Point>((o1, o2) -> (Integer.compare(o1.value,o2.value)));
+        PriorityQueue<Point> minHeap = new PriorityQueue<Point>();
         for (int i = 0; i < pointLen; i++)
             minHeap.add(sorted[i]);
         for (int i = 0; i < pointLen; i++)
@@ -64,7 +63,12 @@ public class Baek18870 {
     }
 }
 
-class Point {
+class Point implements Comparable<Point>{
     public int value;
     public int amountLessThanThis;
+
+   @Override
+    public int compareTo(Point o) {
+        return this.value-o.value;
+    }
 }
