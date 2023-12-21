@@ -5,28 +5,27 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Baek18870 {
-    //Set 사용하기
-   /* static int n;
+   /* //Set 사용하기
+    static int n;
     static int[] srcNums;
-    static int[] sortedNums;*/
-   /* public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         Set<Integer> hashSet = new HashSet<>();
         n = Integer.parseInt(br.readLine());
-        nums = new int[n];
+        srcNums = new int[n];
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) {
             int num = Integer.parseInt(st.nextToken());
-            nums[i] = num;
+            srcNums[i] = num;
             hashSet.add(num);
-        }// nums 배열 초기화
+        }// srcNums 배열 초기화
                                         //java 17에서는 sorted 다음 바로 toList() 가능
                                         //but, 아래 버전 .collect 써야함.
         List<Integer> sortedArr = hashSet.stream().sorted().collect(Collectors.toList());
         for (int i = 0; i < n; i++) {
             int cnt = 0;
-            int compareTarget = nums[i];
+            int compareTarget = srcNums[i];
             for (int c : sortedArr) {
                 if (compareTarget > c)
                     cnt++;
