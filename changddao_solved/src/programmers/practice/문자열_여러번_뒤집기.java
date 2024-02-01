@@ -1,4 +1,4 @@
-package programmers;
+package programmers.practice;
 
 public class 문자열_여러번_뒤집기 {
     public String solution(String my_string, int[][] queries) {

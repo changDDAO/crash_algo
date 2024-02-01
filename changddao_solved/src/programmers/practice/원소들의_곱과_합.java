@@ -1,4 +1,4 @@
-package programmers;
+package programmers.practice;
 
 public class 원소들의_곱과_합 {
     public int solution(int[] num_list) {

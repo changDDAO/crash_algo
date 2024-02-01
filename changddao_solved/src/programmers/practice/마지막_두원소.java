@@ -1,4 +1,4 @@
-package programmers;
+package programmers.practice;
 
 public class 마지막_두원소 {
     public int[] solution(int[] num_list) {
