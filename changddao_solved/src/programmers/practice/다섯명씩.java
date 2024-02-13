@@ -9,7 +9,7 @@ public class 다섯명씩 {
         for(int i = 0; i<names.length; i+=5){
             firstList.add(names[i]);
         }
-        String[] answer = firstList.stream().toArray(String[]::new);
+        String[] answer = firstList.toArray(String[]::new);
         return answer;
     }
 }
