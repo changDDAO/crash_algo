@@ -1,8 +1,9 @@
+package 백준;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Baek18870 {
    /* //Set 사용하기

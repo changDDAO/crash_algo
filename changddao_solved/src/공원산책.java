@@ -27,7 +27,7 @@ public class 공원산책 {
                     nx++;
                 if(dir=='N')
                     nx--;
-                if(nx<0||nx>=x||ny<0||ny>=y) break;이
+                if(nx<0||nx>=x||ny<0||ny>=y) break;
                 if(map[nx][ny]=='X') break;
                 if(i== size-1){
                     startPos[0]=nx;

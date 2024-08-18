@@ -1,4 +1,4 @@
-import java.util.StringTokenizer;
+package 백준;
 
 public class Baek4673 {
 

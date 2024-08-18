@@ -1,3 +1,5 @@
+package 백준;
+
 public class Baek10825 {
     public static void main(String[] args) {
 
