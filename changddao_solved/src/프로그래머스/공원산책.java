@@ -1,3 +1,5 @@
+package 프로그래머스;
+
 public class 공원산책 {
     public int[] solution(String[] park, String[] routes) {
         int x = park.length;

@@ -1,3 +1,5 @@
+package 프로그래머스;
+
 public class 덧칠하기 {
     class Solution {
         public int solution(int n, int m, int[] section) {

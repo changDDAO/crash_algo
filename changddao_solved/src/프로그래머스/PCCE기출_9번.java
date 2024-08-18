@@ -1,3 +1,5 @@
+package 프로그래머스;
+
 public class PCCE기출_9번 {
     //동서남북 방향 정의하기
     static int[] dx = {1,0,-1,0};//세로방향 정의
