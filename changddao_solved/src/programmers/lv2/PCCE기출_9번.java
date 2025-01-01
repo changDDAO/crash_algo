@@ -1,4 +1,4 @@
-package 프로그래머스;
+package programmers.lv2;
 
 public class PCCE기출_9번 {
     //동서남북 방향 정의하기

@@ -1,4 +1,4 @@
-package 프로그래머스;
+package programmers.lv2;
 
 import java.util.ArrayList;
 import java.util.List;

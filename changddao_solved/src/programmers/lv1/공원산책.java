@@ -1,4 +1,4 @@
-package 프로그래머스;
+package programmers.lv1;
 
 public class 공원산책 {
     public int[] solution(String[] park, String[] routes) {
