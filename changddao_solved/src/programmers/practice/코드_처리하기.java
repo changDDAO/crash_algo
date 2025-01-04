@@ -8,32 +8,31 @@ public class 코드_처리하기 {
         int mode = 0;
         List<String> retList = new ArrayList<>();
         for(int i=0; i<code.length();i++){
+            String temp =String.valueOf(code.charAt(i));
 
             if(mode == 0){
-                String temp =String.valueOf(code.charAt(i));
                 if(!temp.equals("1")){
                     if(i%2==0){
                         retList.add(temp);
                     }
                 }
-                if("1".equals(temp)){
-                    mode = 1;
-                }
             }
             if(mode == 1){
-                String temp =String.valueOf(code.charAt(i));
                 if(!temp.equals("1")){
                     if(i%2==1){
                         retList.add(temp);
                     }
                 }
-                if("1".equals(temp)){
-                    mode = 0;
-                }
             }
-            if(retList.size()==0){
-                return "EMPTY";
+
+            if(temp.equals("1")){
+                mode = (mode>0) ? 0 : 1;
+
             }
+
+        }
+        if(retList.size()==0){
+            return "EMPTY";
         }
 
         return String.join("",retList);
