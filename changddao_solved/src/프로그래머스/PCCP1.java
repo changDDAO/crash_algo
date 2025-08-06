@@ -1,7 +1,6 @@
 package 프로그래머스;
 
-public class PCCP1 {
-
+class PCCP1 {
     public String solution(String video_len, String pos, String op_start, String op_end, String[] commands) {
         int videoLen = toSeconds(video_len);
         int current = toSeconds(pos);
@@ -12,6 +11,9 @@ public class PCCP1 {
             if (cmd.equals("prev")) {
                 current = Math.max(0, current - 10);
             } else if (cmd.equals("next")) {
+                if (current >= opStart && current <= opEnd) {
+                    current = opEnd;
+                }
                 current = Math.min(videoLen, current + 10);
             }
 
@@ -35,5 +37,3 @@ public class PCCP1 {
         return String.format("%02d:%02d", minute, second);
     }
 }
-
-
