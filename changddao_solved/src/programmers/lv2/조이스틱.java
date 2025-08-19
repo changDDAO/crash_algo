@@ -3,7 +3,7 @@ package programmers.lv2;
 public class 조이스틱 {
     public int solution(String name) {
         int answer = 0;
-        //오른쪽으로 쭉 간 횟수
+        //오른쪽으로 쭉 간 횟수2
         int move  = name.length()-1;
         //상,하 비교하기
         for(int i =0; i<name.length();i++){  //CCCCAAAAAAAAAABCB 17 -14
